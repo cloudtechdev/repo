@@ -1,0 +1,129 @@
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/floatthead/1.4.5/jquery.floatThead-slim.js"></script>
+		<style type="text/css">
+		table {
+			border-collapse: collapse;
+		}
+		table td {
+			border: 1px solid black;
+			white-space: nowrap;
+			padding-left: 10px;
+		    padding-right: 10px;
+		    padding-top: 5px;
+		    padding-bottom: 5px;
+		}
+		.center {
+			text-align:center;
+		}
+		.right {
+			text-align:right;
+		}
+		.left {
+			text-align:left;
+		}
+		.red {
+			background-color:#127dad;
+		}
+		.blue {
+			background-color: #0dbc2f;
+		}
+		.green {
+			background-color:#ffc107;
+		}
+		.gray {
+			background-color: #9e9e9e;
+		}
+		</style>
+	</head>
+	<body>
+		<p>
+			Filters selected:<br/>
+			Subsidiary: {subsi}<br/>
+			Location: {loca}<br/>
+			Date Period: {dateper}
+		</p>
+		<button id="toggleAll">Expand/Collapse All</button>
+		<br/>
+		<table>
+			<tr>
+				<td class="gray">&nbsp;</td>
+				<td class="gray">&nbsp;</td>
+				<td colspan="17" class="center red">{1}</td>
+				<td colspan="15" class="center blue">{2}</td>
+				<td colspan="16" class="center green">{3}</td>
+				<td colspan="5" class="center gray">{4}</td>
+				<td colspan="5" class="center gray">{5}</td>
+			</tr>
+			<tr>
+				<td class="center gray">Item</td>
+				<td class="center gray">Product Mix</td>
+				<td class="center red">Beg. Invty. </td>
+				<td class="center red">ALC</td>
+				<td class="center red">Cost</td>
+				<td class="center red">Incoming Shipment + In Port</td>
+				<td class="center red">ELC</td>
+				<td class="center red">Cost</td>
+				<td class="center red">Total Available</td>
+				<td class="center red">ELC</td>
+				<td class="center red">Sales Forecast</td>
+				<td class="center red">Selling Price</td>
+				<td class="center red">Projected Revenue</td>
+				<td class="center red">Projected Cost</td>
+				<td class="center red">Projected GP</td>
+				<td class="center red">Projected GP/kg</td>
+				<td class="center red">Actual Sales</td>
+				<td class="center red">Balance to Sell</td>
+				<td class="center red">Ending Invty.</td>
+				<td class="center blue">Beg. Invty.</td>
+				<td class="center blue">ELC</td>
+				<td class="center blue">Cost</td>
+				<td class="center blue">Incoming Shipment</td>
+				<td class="center blue">ELC</td>
+				<td class="center blue">Cost</td>
+				<td class="center blue">Total Available</td>
+				<td class="center blue">ELC</td>
+				<td class="center blue">Sales Forecast</td>
+				<td class="center blue">Selling Price</td>
+				<td class="center blue">Projected Revenue</td>
+				<td class="center blue">Projected Cost</td>
+				<td class="center blue">Projected GP</td>
+				<td class="center blue">Projected GP/kg</td>
+				<td class="center blue">Ending Invty.</td>
+				<td class="center green">Beg. Invty.</td>
+				<td class="center green">ELC</td>
+				<td class="center green">Cost</td>
+				<td class="center green">Incoming Shipment</td>
+				<td class="center green">ELC</td>
+				<td class="center green">Cost</td>
+				<td class="center green">Total Available</td>
+				<td class="center green">ELC</td>
+				<td class="center green">Sales Forecast</td>
+				<td class="center green">Selling Price</td>
+				<td class="center green">Projected Revenue</td>
+				<td class="center green">Projected COGS</td>
+				<td class="center green">Projected GP</td>
+				<td class="center green">Projected GP/kg</td>
+				<td class="center green">Shortage/Surplus</td>
+				<td class="center green">Import Request</td>
+				<td class="center gray">Sales Forecast</td>
+				<td class="center gray">Incoming Shipment</td>
+				<td class="center gray">ELC</td>
+				<td class="center gray">Total Available</td>
+				<td class="center gray">Ending Invty.</td>
+				<td class="center gray">Sales Forecast</td>
+				<td class="center gray">Incoming Shipment</td>
+				<td class="center gray">ELC</td>
+				<td class="center gray">Total Available</td>
+				<td class="center gray">Ending Invty.</td>
+			</tr>
+			{lines}
+		</table>
+		<script>alert("Note: Click the Item Category/Type/Brand to expand or collapse."); $("tr").click(function() {var id = $(this).attr("id");if($("."+id).css("display") == "none"){$("."+id).show();}else{$("."+id).hide();}});
+		$("#toggleAll").click(function(){
+			$(".toggleAll").click();
+		});
+		</script>
+	</body>
+</html>

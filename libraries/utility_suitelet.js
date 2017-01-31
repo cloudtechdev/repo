@@ -5,6 +5,7 @@ var FORM = {
 	'script': '',
 	'request': '',
 	'response': '',
+	'method': '',
 }
 
 /**
