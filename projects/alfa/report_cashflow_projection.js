@@ -5,11 +5,12 @@ function suitelet(request,response){
 	FORM.method = request.getMethod();
 	var form = '';
 	var params = [
+		// field_id, field_type, field_value, field_label
 		['custpage_startdate','date',null,'Start Date'],
 		['custpage_ardays','integer',null,'AR Days Level'],
 		['custpage_bankbal','currency',null,'Bank Balance'],
 		['custpage_idealbal','currency',null,'Ideal Balance'],
-		[null,'submit',null,'Generate']
+		['custpage_submit','submit',null,'Generate']
 	];
 
 	if(FORM.method == 'GET'){

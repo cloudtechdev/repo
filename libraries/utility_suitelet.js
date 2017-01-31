@@ -22,7 +22,7 @@ function createForm(params) {
 	}
 
 	Object.keys(params).forEach(function(fieldId) {
-		if (params[fieldId].type != 'button') {
+		if (params[fieldId].type != 'button' && params[fieldId].type != 'submit') {
 			params[fieldId].object = form.addField(fieldId, params[fieldId].type, params[fieldId].label, params[fieldId].source);
 		} else {
 			if (params[fieldId].type == 'button') {
@@ -60,6 +60,7 @@ function getParams(params) {
  */
 function setDefaultValues(params) {
 	Object.keys(params).forEach(function(fieldId) {
+		if(params[fieldId].type != 'button' && params[fieldId].type != 'submit')
 		params[fieldId]['object'].setDefaultValue(params[fieldId].value);
 	});
 	return params;
