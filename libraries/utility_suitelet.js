@@ -60,8 +60,8 @@ function getParams(params) {
  */
 function setDefaultValues(params) {
 	Object.keys(params).forEach(function(fieldId) {
-		if(params[fieldId].type != 'button' && params[fieldId].type != 'submit')
-		params[fieldId]['object'].setDefaultValue(params[fieldId].value);
+		if (params[fieldId].type != 'button' && params[fieldId].type != 'submit')
+			params[fieldId]['object'].setDefaultValue(params[fieldId].value);
 	});
 	return params;
 }
@@ -115,3 +115,62 @@ function isTruthy(val) {
 	}
 	return null;
 }
+
+function loadSearch(id, filters, start, end) {
+	var search = nlapiLoadSearch(null, id);
+	if (filters) {
+		search.addFilters(filters);
+	}
+
+	search = getResults(search.runSearch(), start, end);
+	return search;
+};
+
+function getResults(search, start, end) {
+	var results = [];
+	var temp = search;
+	if (search) {
+		do {
+			temp = search.getResults(start, end);
+			results = results.concat(temp);
+			start += 1000;
+			end += 1000;
+		}
+		while (temp.length == 1000);
+	}
+	return results;
+};
+
+function getAllChildLocation(parent) {
+	var selected = nlapiLookupField('location', parent, 'name');
+	//console.log(selected);
+	var filter = [];
+	filter.push(new nlobjSearchFilter('name', null, 'contains', selected));
+	var search = nlapiSearchRecord(null, 'customsearch_location_filter', filter);
+	var children = [];
+	if (search) {
+		//console.log(search.length);
+		search.forEach(function(result) {
+			var count_1 = (selected.match(/:/g) || []).length;
+			var count_2 = (result.getValue('name').match(/:/g) || []).length;
+			//console.log(count_1 + ' ' + count_2);
+			if (count_1 == count_2) {
+				//console.log('equal');
+				var selected_end = selected.split(' : ');
+				selected_end = selected_end[selected_end.length - 1];
+				var result_end = result.getValue('name').split(' : ');
+				result_end = result_end[result_end.length - 1];
+				//console.log(result_end + ' ' + selected_end);
+				if (result_end.length == selected_end.length) {
+					children.push(result.id);
+				}
+			} else {
+				children.push(result.id);
+			}
+		});
+	} else {
+		children.push(parent);
+	}
+
+	return children;
+};
