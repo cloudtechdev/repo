@@ -54,6 +54,34 @@ function getParams(params) {
 	return params;
 }
 
+function getSettings(type, context, params) {
+	var data = {};
+
+	params.forEach(function(arr) {
+		if (arr[0]) {
+			if(arr[1] != 'button' && arr[1] != 'submit'){
+				data[arr[0]] = isTruthy(context.getSetting(type, arr[0].replace('custpage','custscript')));
+			}
+		}
+	});
+
+	return data;
+}
+
+/**
+ * Set schedule script parameters
+ * @param {[type]} params [description]
+ */
+function setParams(params) {
+	var data = {};
+
+	Object.keys(params).forEach(function(fieldId) {
+		data[fieldId.replace('custpage', 'custscript')] = isTruthy(request.getParameter(fieldId));
+	});
+
+	return data;
+}
+
 /**
  * Set field default values
  * @param {object} params field details
