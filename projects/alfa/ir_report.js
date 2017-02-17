@@ -22,6 +22,7 @@
  */
 
 /** GLOBAL VARIABLES */
+// CHANGES
 var FORM_NAME = 'Import Request Report'
 var FORM_FIELDS = ['custpage_subsidiary', 'custpage_location', 'custpage_dateperiod'];
 /**
